@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log In</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+</head>
+
+<body>
+
+   
+    <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo-certigo.png" alt="CertiGo Logo" class="certigo-logo" />
+        </a>
+      </div>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="nav-drawer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="request.html">Request</a></li>
+          <li><a href="track.html">Track Status</a></li>
+          <li><a href="reminders.html">Reminders</a></li>
+          <li><a href="login.html" class="login-btn">Sign In</a></li>
+        </ul>
+
+
+      </div>
+    </div>
+  </nav>
+
+  <section id="login-1">
+  <div class="login-wrapper">
+    <div class="login-container">
+      <div class="login-logo">
+          <a href="index.html">
+          <img src="images/logo-certigo.png" alt="CertiGo Logo" class="certigo-logo" />
+        </a>
+      </div>
+
+      <!-- Show error message if error is present -->
+      <!-- <?php if (isset($_GET['error']) && $_GET['error'] == '1'): ?>
+        <div class="login-error" style="color: #b00020; margin-bottom: 12px; font-weight: 600;">
+          Error! Credentials are wrong — try again.
+        </div>
+      <?php endif; ?> -->
+
+     <form action="php/login.php" method="post" class="login-form" autocomplete="off">
+  <div class="input-group">
+    <label for="username">Username</label>
+    <input type="text" id="username" name="username" placeholder="Enter your username" required>
+  </div>
+
+  <div class="input-group password-group">
+    <label for="password">Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <i class="fa-solid fa-eye toggle-password" id="togglePassword" style="cursor:pointer;"></i>
+    </div>
+  </div>
+
+  <!-- ✅ Google reCAPTCHA widget -->
+  <div class="g-recaptcha" data-sitekey="6Lf2CQIsAAAAANP349fIoVTMUBx3uUVeeoMaQD3L"></div>
+  <br>
+
+  <button type="submit" class="login-btn">Login</button>
+
+</form>
+
+    </div>
+  </div>
+</section>
+
+
+
+    
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>Local Government Unit Digitalization<br>
+                    Copyright © 2023.</p>
+            </div>
+
+            <div class="footer-right">
+                <p><strong>CONTACT US</strong><br>09-XXX-XXX-XXX</p>
+                <p><strong>EMAIL US</strong><br>brngy.balangkas@gov.ph</p>
+                <p>Icons by Google Material Symbol</p>
+                <p class="credits">
+                    Designed & Developed by Five Star | BSIT 3-4<br>
+                    of Pamantasan Ng Lungsod Ng Valenzuela
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    
+<!-- ✅ Load the reCAPTCHA JS -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.get('logged_out') === '1') {
+    alert('You have been logged out successfully.');
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  if (params.has('unauthorized')) {
+    alert('Access denied. Please log in first.');
+  }
+</script>
+
+
+</body>
+
+<script src="js/script.js"></script>
+
+</html>

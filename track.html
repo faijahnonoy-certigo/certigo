@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Track Status</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+</head>
+
+<body>
+
+  <nav>
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo-certigo.png" alt="CertiGo Logo" class="certigo-logo" />
+        </a>
+      </div>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+      <div class="nav-drawer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="request.html">Request</a></li>
+          <li><a href="track.html">Track Status</a></li>
+          <li><a href="reminders.html">Reminders</a></li>
+          <li><a href="login.html" class="login-btn">Sign In</a></li>
+        </ul>
+
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN PAGE CONTENT -->
+    <section id="reminders-sec-1">
+    <header class="faq-header">
+      <h1>Track Your Request's Status</h1>
+      <p><b>Stay updated and know exactly where your request stands at any time.</b></p>
+    </header>
+  </section>
+
+<section id="track-sec-1">
+  <div class="track-container">
+
+    <!-- Input Section -->
+    <div class="track-input-section">
+      <label for="controlNumberInput" class="input-label">Enter Request Number:</label>
+      <input type="text" id="controlNumberInput" placeholder="e.g., REQ-20250203-1" maxlength="16">
+      <button id="submitBtn" onclick="trackRequest()">Submit</button>
+      <div id="errorMessage" class="error-message"></div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsSection" class="results-section">
+      <div id="residentInfo" class="resident-info">
+        <div id="residentName" class="resident-name"></div>
+        <div id="currentStatus" class="resident-status"></div>
+      </div>
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <div class="status-step" id="step1">
+          <div class="circle">1</div>
+          <div class="label">Pending</div>
+        </div>
+        <div class="status-step" id="step2">
+          <div class="circle">2</div>
+          <div class="label">In Progress</div>
+        </div>
+        <div class="status-step" id="step3">
+          <div class="circle">3</div>
+          <div class="label">For Pick Up</div>
+        </div>
+        <div class="status-step" id="step4">
+          <div class="circle">4</div>
+          <div class="label">Completed</div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline" id="timeline">
+        <!-- Timeline items will be dynamically added here -->
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <!-- END OF MAIN PAGE CONTENT -->
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p>Local Government Unit Digitalization<br>
+          Copyright © 2023.</p>
+      </div>
+
+      <div class="footer-right">
+        <p><strong>CONTACT US</strong><br>09-XXX-XXX-XXX</p>
+        <p><strong>EMAIL US</strong><br>brngy.balangkas@gov.ph</p>
+        <p>Icons by Google Material Symbol</p>
+        <p class="credits">
+          Designed & Developed by Five Star | BSIT 3-4<br>
+          of Pamantasan Ng Lungsod Ng Valenzuela
+        </p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+
+<script src="js/script.js"></script>
+
+</html>

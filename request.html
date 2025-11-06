@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <a href="index.html">
+          <img src="images/logo-certigo.png" alt="CertiGo Logo" class="certigo-logo" />
+        </a>
+      </div>
+
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="nav-drawer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="request.html">Request</a></li>
+          <li><a href="track.html">Track Status</a></li>
+          <li><a href="reminders.html">Reminders</a></li>
+          <li><a href="login.html" class="login-btn">Sign In</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <section id="request-section-1">
+    <div class="main-content-wrapper">
+      <div class="form-card">
+        <header class="header-section">
+          <h1 class="header-title">INDIGENCY REQUEST FORM</h1>
+          <div class="header-subtitle-group">
+            <p class="header-subtitle">FILL OUT THE FORM TO REQUEST A CERTIFICATE OF INDIGENCY</p>
+            <div class="header-line"><span class="header-dot"></span></div>
+          </div>
+        </header>
+
+        <!-- Step Indicator -->
+        <div class="step-indicator-wrapper">
+          <div class="step-item active" id="step1">
+            <span class="step-circle">1</span>
+            <span class="step-label">Personal Info</span>
+          </div>
+          <div class="step-line"></div>
+          <div class="step-item" id="step2">
+            <span class="step-circle">2</span>
+            <span class="step-label">Upload Requirements</span>
+          </div>
+        </div>
+
+        <!-- FORM -->
+        <form id="indigencyForm" class="form-body" action="php/submit.php" method="POST" enctype="multipart/form-data">
+
+          <!-- === Phase 1 === -->
+          <div id="phase1" class="form-phase">
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <div class="input-row">
+                <input type="text" placeholder="First Name" class="form-input half-width" required name="firstname" />
+                <input type="text" placeholder="Last Name" class="form-input half-width" required name="lastname" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Address</label>
+              <input type="text" placeholder="Complete Address" class="form-input full-width" required name="address" />
+            </div>
+
+            <div class="form-group">
+              <div class="input-row">
+                <div class="input-field-group half-width">
+                  <label class="form-label">Years of Residency</label>
+                  <input type="number" class="form-input" required min="0" name="yearresidency" maxlength="2"/>
+                </div>
+                <div class="input-field-group half-width">
+                  <label class="form-label">Contact Number</label>
+                  <input type="tel" placeholder="09xxxxxxxxx" class="form-input" required name="contact" maxlength="11"/>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-row">
+                <div class="input-field-group half-width">
+                  <label class="form-label">Email</label>
+                  <input type="email" placeholder="example@email.com" class="form-input" required name="email" />
+                </div>
+                <div class="input-field-group half-width">
+                  <label class="form-label">Purpose</label>
+                  <input type="text" placeholder="Purpose (e.g., school requirement)" class="form-input" required name="purpose" />
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Notes/Remarks:</label>
+              <textarea rows="4" class="form-input full-width textarea-input" name="remarks"></textarea>
+            </div>
+
+            <div class="submit-area">
+              <button type="button" onclick="goToPhase2(event)" class="submit-button">NEXT STEP</button>
+            </div>
+          </div>
+
+          <!-- === Phase 2 === -->
+          <div id="phase2" class="form-phase hidden">
+            <p class="phase2-notice">
+              Upload required documents (max 2MB each; JPG, PNG, PDF).
+            </p>
+
+            <div class="form-group">
+              <label class="form-label">Upload your Valid ID:</label>
+              <div class="file-upload-box">
+                <input type="file" required onchange="handleFileUpload(this, 'validIdFileName')" name="validid">
+                <span id="validIdFileName">No file chosen</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Upload your Cedula:</label>
+              <div class="file-upload-box">
+                <input type="file" required onchange="handleFileUpload(this, 'cedulaFileName')" name="cedula">
+                <span id="cedulaFileName">No file chosen</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Upload Photo Holding your Valid ID:</label>
+              <div class="file-upload-box">
+                <input type="file" required onchange="handleFileUpload(this, 'photoIdFileName')" name="holdingid">
+                <span id="photoIdFileName">No file chosen</span>
+              </div>
+            </div>
+
+            <!-- reCAPTCHA -->
+            <div class="form-group" style="text-align:center; margin:15px 0;">
+              <div class="g-recaptcha" data-sitekey="6Lf2CQIsAAAAANP349fIoVTMUBx3uUVeeoMaQD3L"></div>
+            </div>
+
+            <div class="submit-area submit-area-phase2">
+              <button type="button" onclick="goToPhase1()" class="back-button">BACK</button>
+              <button type="submit" class="submit-button">SUBMIT REQUEST</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Single Modal ===== -->
+  <div id="requestConfirmModal" class="hidden modal-overlay">
+    <div class="modal-content">
+      <h3>Submit Request?</h3>
+      <p>Are you sure you want to submit this request?</p>
+      <div class="modal-buttons">
+        <button id="confirmRequestBtn" type="button">Yes, Submit</button>
+        <button id="cancelRequestBtn" type="button">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <p>Local Government Unit Digitalization<br>Copyright © 2023.</p>
+      </div>
+      <div class="footer-right">
+        <p><strong>CONTACT US</strong><br>09-XXX-XXX-XXX</p>
+        <p><strong>EMAIL US</strong><br>brngy.balangkas@gov.ph</p>
+        <p>Icons by Google Material Symbol</p>
+        <p class="credits">Designed & Developed by Five Star | BSIT 3-4<br>of Pamantasan Ng Lungsod Ng Valenzuela</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/request.js"></script>
+</body>
+</html>

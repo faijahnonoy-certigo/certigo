@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo-certigo.png" alt="CertiGo Logo" class="certigo-logo" />
+                </a>
+            </div>
+
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-drawer">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="request.html">Request</a></li>
+                    <li><a href="track.html">Track Status</a></li>
+                    <li><a href="reminders.html">Reminders</a></li>
+                    <li><a href="login.html" class="login-btn">Sign In</a></li>
+                </ul>
+
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN HOMEPAGE CONTENT -->
+
+    <section id="home-section-1">
+        <div class="home-sec-1-container">
+                <h3 class="welcometocertigo">Say Hello To CertiGo!</h3>
+                <p class="welcometocertigo-desc">CertiGo is a fast and reliable online platform that makes requesting
+                    your barangay indigency
+                    certificate simple, secure, and hassle-free.</p>
+        </div>
+
+        <div class="card-req-track-container">
+            <div class="card-request" onclick="location.href='request.html'">
+                <span class="material-symbols-outlined">assignment_add</span>
+                <p>Request Barangay<br>Indigency Certificate</p>
+            </div>
+        
+            <div class="card-request" onclick="location.href='track.html'">
+                <span class="material-symbols-outlined">content_paste_search</span>
+                <p>Track Status<br>Of My Request</p>
+            </div>
+        </div>
+
+    </section>
+
+     <section id="home-section-2">
+        <div class="howdoesitwork-container">
+            <h3 class="howdoesitwork-title">How Does It Work?</h3>
+            <div class="steps-card-cont">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <p>Fill out the online request form.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <p>Upload needed details &amp; requirements.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <p>Track your request status online.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <p>Get notified when it’s ready for claiming at the barangay office.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="home-section-3">
+        
+        <div class="accordion-container">
+            
+            <h3 class="learnmore-title">Learn More</h3>
+            <div class="accordion-item">
+                <button class="accordion-header">What is a Barangay Indigency Certificate?</button>
+                <div class="accordion-content">
+                    <p>A <b>Certificate of Indigency</b> is an official document issued by the barangay that proves a person
+                        or family has low or insufficient income. It is usually requested to avail of government programs,
+                        scholarships, medical or financial assistance, and other benefits for those who are considered
+                        indigent.</p>
+                </div>
+            </div>
+    
+            <div class="accordion-item">
+                <button class="accordion-header">What is CertiGo?</button>
+                <div class="accordion-content">
+                    <p><b>CertiGo</b> is your trusted online platform for requesting barangay indigency certificates.
+                        Our goal is to make community services more accessible by bringing the process online —
+                        simple, fast, and convenient for every resident.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- END OF MAIN PAGE CONTENT -->
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <p>Local Government Unit Digitalization<br>
+                    Copyright © 2023.</p>
+            </div>
+
+            <div class="footer-right">
+                <p><strong>CONTACT US</strong><br>09-XXX-XXX-XXX</p>
+                <p><strong>EMAIL US</strong><br>brngy.balangkas@gov.ph</p>
+                <p>Icons by Google Material Symbol</p>
+                <p class="credits">
+                    Designed & Developed by Five Star | BSIT 3-4<br>
+                    of Pamantasan Ng Lungsod Ng Valenzuela
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+<script src="js/script.js"></script>
+
+</html>
