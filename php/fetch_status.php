@@ -2,6 +2,10 @@
 header('Content-Type: application/json');
 
 // ================================
+// THIS IS FOR THE TRACKING STATUS PAGE
+// ================================ 
+
+// ================================
 // DATABASE CONNECTION
 // ================================
 $servername = "localhost";

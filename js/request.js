@@ -156,16 +156,43 @@ document.addEventListener("DOMContentLoaded", function () {
   const cancelBtn = document.getElementById("cancelRequestBtn");
 
   // === Step Navigation ===
-  window.goToPhase2 = function (event) {
-    event.preventDefault();
-    document.getElementById("phase1").classList.add("hidden");
-    document.getElementById("phase2").classList.remove("hidden");
-  };
+  // === Step Navigation ===
+window.goToPhase2 = function (event) {
+  event.preventDefault();
 
-  window.goToPhase1 = function () {
-    document.getElementById("phase2").classList.add("hidden");
-    document.getElementById("phase1").classList.remove("hidden");
-  };
+  const phase1 = document.getElementById("phase1");
+  const phase2 = document.getElementById("phase2");
+  const inputs = phase1.querySelectorAll("[required]");
+  let allValid = true;
+
+  inputs.forEach((input) => {
+    if (!input.checkValidity() || !input.value.trim()) {
+      input.classList.add("border-error-red");
+      input.reportValidity(); // show browser tooltip message
+      allValid = false;
+    } else {
+      input.classList.remove("border-error-red");
+    }
+  });
+
+  if (allValid) {
+    phase1.classList.add("hidden");
+    phase2.classList.remove("hidden");
+    document.getElementById("step1")?.classList.replace("active", "complete");
+    document.getElementById("step2")?.classList.add("active");
+    document.querySelector(".form-card")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+};
+
+window.goToPhase1 = function () {
+  document.getElementById("phase2").classList.add("hidden");
+  document.getElementById("phase1").classList.remove("hidden");
+  document.getElementById("step1")?.classList.add("active");
+  document.getElementById("step1")?.classList.remove("complete");
+  document.getElementById("step2")?.classList.remove("active");
+  document.querySelector(".form-card")?.scrollIntoView({ behavior: "smooth", block: "start" });
+};
+
 
   window.handleFileUpload = function (input, labelId) {
     const fileName = input.files[0] ? input.files[0].name : "No file chosen";
@@ -191,32 +218,60 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // === Confirm and submit form ===
-  confirmBtn.addEventListener("click", async function () {
-    confirmModal.classList.add("hidden");
+   // === Confirm and submit form ===
+confirmBtn.addEventListener("click", async function () {
+  confirmModal.classList.add("hidden");
 
-    const formData = new FormData(form);
+  const formData = new FormData(form);
 
-    try {
-      const response = await fetch(form.action, {
-        method: "POST",
-        body: formData,
-      });
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: formData,
+    });
 
-      const result = await response.json();
+    const result = await response.json();
 
-      if (result.status === "success") {
-        alert(`✅ ${result.message}\nTracking No: ${result.tracking_no}`);
-        form.reset();
-        grecaptcha.reset();
+    if (result.status === "success") {
+      // ✅ Create modal content
+      const summaryDiv = document.getElementById("userDetailsSummary");
+      const firstname = formData.get("firstname");
+      const lastname = formData.get("lastname");
+      const address = formData.get("address");
+      const contact = formData.get("contact");
+      const email = formData.get("email");
+      const purpose = formData.get("purpose");
+
+      summaryDiv.innerHTML = `
+        <p><strong>Tracking No:</strong> ${result.tracking_no}</p>
+        <p><strong>Name:</strong> ${firstname} ${lastname}</p>
+        <p><strong>Address:</strong> ${address}</p>
+        <p><strong>Contact:</strong> ${contact}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Purpose:</strong> ${purpose}</p>
+      `;
+
+      // ✅ Show success modal
+      const successModal = document.getElementById("requestSuccessModal");
+      successModal.classList.remove("hidden");
+
+      // Reset form and captcha
+      form.reset();
+      grecaptcha.reset();
+
+      // Close success modal
+      document.getElementById("closeSuccessModalBtn").onclick = () => {
+        successModal.classList.add("hidden");
         window.location.href = "request.html"; // reload clean form
-      } else {
-        alert(`❌ ${result.message || "Something went wrong. Try again."}`);
-        grecaptcha.reset();
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      alert("❌ A network or server error occurred. Please try again.");
+      };
+    } else {
+      alert(`❌ ${result.message || "Something went wrong. Try again."}`);
       grecaptcha.reset();
     }
-  });
+  } catch (error) {
+    console.error("Error:", error);
+    alert("❌ A network or server error occurred. Please try again.");
+    grecaptcha.reset();
+  }
+});
 });
