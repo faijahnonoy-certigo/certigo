@@ -52,6 +52,7 @@ function uploadFile($inputName, $upload_dir) {
 
 // --- Collect form data ---
 $firstname     = $_POST['firstname'] ?? '';
+$middleinitial  = $_POST['middleinitial'] ?? '';
 $lastname      = $_POST['lastname'] ?? '';
 $address       = $_POST['address'] ?? '';
 $yearresidency = $_POST['yearresidency'] ?? '';
@@ -71,13 +72,15 @@ if (!$validid || !$cedula || !$holdingid) {
 
 // --- Insert record ---
 $stmt = $conn->prepare("INSERT INTO request 
-    (firstname, lastname, address, yearresidency, contact, email, purpose, remarks, validid, cedula, holdingid, status) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending')");
+    (firstname, middleinitial, lastname, address, yearresidency, contact, email, purpose, remarks, validid, cedula, holdingid, status) 
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending')");
+
 $stmt->bind_param(
-    "sssisssssss",
-    $firstname, $lastname, $address, $yearresidency, $contact, $email, $purpose, $remarks,
-    $validid, $cedula, $holdingid
+    "sssissssssss",
+    $firstname, $middleinitial, $lastname, $address, $yearresidency,
+    $contact, $email, $purpose, $remarks, $validid, $cedula, $holdingid
 );
+
 
 if ($stmt->execute()) {
     $last_id = $conn->insert_id;

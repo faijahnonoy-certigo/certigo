@@ -33,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
             updateStatus(btn.dataset.id, 'Approved');
         });
     });
+
     document.querySelectorAll('.reject-btn').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
-            const reason = prompt('Enter rejection reason:');
-            if (!reason) return;
-            updateStatus(btn.dataset.id, 'Rejected', null, reason);
+            promptReject(btn.dataset.id);
         });
     });
+
     document.querySelectorAll('.setup-pickup-btn').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateStatus(btn.dataset.id, 'For Pick-up', date);
         });
     });
+
     document.querySelectorAll('.complete-pickup-btn').forEach(btn => {
         btn.addEventListener('click', e => {
             e.stopPropagation();
@@ -83,14 +84,12 @@ document.addEventListener('DOMContentLoaded', function() {
                        <button onclick="promptReject(${data.id})">Reject</button>`;
         }
 
-        // Thumbnail generator
         const makeImg = (file, label) => file 
-            ? `<p><b>${label}:</b><br><img src="php/uploads/${file}" alt="${label}" 
-                class="preview-img"></p>` 
+            ? `<p><b>${label}:</b><br><img src="php/uploads/${file}" alt="${label}" class="preview-img"></p>` 
             : '';
 
         document.getElementById('details').innerHTML = `
-            <h2>${data.firstname} ${data.lastname}</h2>
+            <h2>${data.firstname} ${data.middleinitial} ${data.lastname}</h2>
             <p><b>Tracking No:</b> ${data.tracking_no}</p>
             <p><b>Address:</b> ${data.address}</p>
             <p><b>Years of Residency:</b> ${data.yearresidency}</p>
@@ -105,7 +104,6 @@ document.addEventListener('DOMContentLoaded', function() {
             <div>${buttons}<button onclick="closeModal()">Close</button></div>
         `;
 
-        // Make images enlargeable
         document.querySelectorAll('.preview-img').forEach(img => {
             img.style.width = '100px';
             img.style.height = '100px';
@@ -132,49 +130,159 @@ document.addEventListener('DOMContentLoaded', function() {
     };
 
     // ==============================
-    // Reject reason prompt
+    // Reject reason dropdown modal
     // ==============================
+    const REJECTION_REASONS = [
+        "Incomplete requirements",
+        "Invalid or unclear ID/image provided",
+        "Incorrect personal information",
+        "Duplicate request submitted",
+        "Not eligible for this document",
+        "Pending verification from barangay"
+    ];
+
     window.promptReject = function(id) {
-        const reason = prompt('Enter rejection reason:');
-        if (!reason) return;
-        updateStatus(id, 'Rejected', null, reason);
+        const popupBg = document.createElement('div');
+        popupBg.className = 'reject-bg';
+        popupBg.innerHTML = `
+            <div class="reject-box">
+                <h3>Select Rejection Reason</h3>
+                <select id="rejectReasonSelect">
+                    <option value="" disabled selected>Select a reason</option>
+                    ${REJECTION_REASONS.map(r => `<option value="${r}">${r}</option>`).join('')}
+                </select>
+                <div class="reject-actions">
+                    <button id="confirmReject">Confirm</button>
+                    <button id="cancelReject">Cancel</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(popupBg);
+        popupBg.style.display = 'flex';
+
+        popupBg.querySelector('#confirmReject').addEventListener('click', () => {
+            const select = document.getElementById('rejectReasonSelect');
+            const reason = select.value;
+            if (!reason) {
+                alert('Please select a rejection reason.');
+                return;
+            }
+            updateStatus(id, 'Rejected', null, reason);
+            popupBg.remove();
+        });
+
+        popupBg.querySelector('#cancelReject').addEventListener('click', () => popupBg.remove());
+        popupBg.addEventListener('click', (e) => {
+            if (e.target === popupBg) popupBg.remove();
+        });
     };
 });
 
 
-//log out start
-
+// ==============================
+// Logout modal
+// ==============================
 document.addEventListener("DOMContentLoaded", function () {
-  const logoutBtn = document.getElementById("logoutBtn");
-  const logoutModal = document.getElementById("logoutModal");
-  const confirmLogout = document.getElementById("confirmLogout");
-  const cancelLogout = document.getElementById("cancelLogout");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const logoutModal = document.getElementById("logoutModal");
+    const confirmLogout = document.getElementById("confirmLogout");
+    const cancelLogout = document.getElementById("cancelLogout");
 
-  if (!logoutBtn || !logoutModal) return;
+    if (!logoutBtn || !logoutModal) return;
 
-  // Show modal on button click
-  logoutBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    logoutModal.style.display = "flex";
+    logoutBtn.addEventListener("click", function (e) {
+        e.preventDefault();
+        logoutModal.style.display = "flex";
+    });
+
+    cancelLogout.addEventListener("click", function () {
+        logoutModal.style.display = "none";
+    });
+
+    confirmLogout.addEventListener("click", function () {
+        window.location.href = "php/logout.php";
+    });
+
+    window.addEventListener("click", function (e) {
+        if (e.target === logoutModal) {
+            logoutModal.style.display = "none";
+        }
+    });
+});
+
+
+
+
+document.querySelectorAll('.request-row').forEach(row => {
+  row.addEventListener('click', () => {
+    document.querySelectorAll('.request-row').forEach(r => r.classList.remove('active'));
+    row.classList.add('active');
   });
+});
 
-  // Hide modal when "Cancel" is clicked
-  cancelLogout.addEventListener("click", function () {
-    logoutModal.style.display = "none";
-  });
-
-  // Redirect to logout.php when confirmed
-  confirmLogout.addEventListener("click", function () {
-    window.location.href = "php/logout.php";
-  });
-
-  // Optional: close modal when clicking outside it
-  window.addEventListener("click", function (e) {
-    if (e.target === logoutModal) {
-      logoutModal.style.display = "none";
-    }
+document.querySelectorAll('.active-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.active-tab').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
   });
 });
 
 
-// logout end
+// NEW FEATURES
+function setupTableFeatures(tableId, searchId, dateId, purposeId, exportId, dateColumnIndex = 2, purposeColumnIndex = 2) {
+  const table = document.getElementById(tableId);
+  if (!table) return;
+
+  const rows = table.querySelectorAll('.request-row');
+
+  // Search by name or request number
+  if (searchId) {
+    const searchInput = document.getElementById(searchId);
+    searchInput?.addEventListener('keyup', function() {
+      const value = this.value.toLowerCase();
+      rows.forEach(row => {
+        row.style.display = row.innerText.toLowerCase().includes(value) ? '' : 'none';
+      });
+    });
+  }
+
+  // Filter by date
+  if (dateId) {
+    const dateInput = document.getElementById(dateId);
+    dateInput?.addEventListener('change', function() {
+      const filterDate = this.value;
+      rows.forEach(row => {
+        const dateCell = row.cells[dateColumnIndex]?.innerText.split(' ')[0];
+        row.style.display = (!filterDate || dateCell === filterDate) ? '' : 'none';
+      });
+    });
+  }
+
+  // Filter by purpose
+  if (purposeId) {
+    const purposeInput = document.getElementById(purposeId);
+    purposeInput?.addEventListener('change', function() {
+      const filter = this.value.toLowerCase();
+      rows.forEach(row => {
+        const purposeCell = row.cells[purposeColumnIndex]?.innerText.toLowerCase();
+        row.style.display = (!filter || purposeCell === filter) ? '' : 'none';
+      });
+    });
+  }
+
+  // Export to Excel
+  if (exportId) {
+    const exportBtn = document.getElementById(exportId);
+    exportBtn?.addEventListener('click', function() {
+      const wb = XLSX.utils.table_to_book(table, { sheet: tableId });
+      XLSX.writeFile(wb, tableId + ".xlsx");
+    });
+  }
+}
+
+// ======== Setup all tables ========
+setupTableFeatures('pendingTable', 'searchInput', 'dateFilter', 'purposeFilter', 'exportExcelBtn', 3, 2);
+setupTableFeatures('approvedTable', 'searchInputApproved', 'dateFilterApproved', null, 'exportExcelApproved', 2, 2);
+setupTableFeatures('forpickupTable', 'searchInputForPickup', 'dateFilterForPickup', null, 'exportExcelForPickup', 2, 2);
+setupTableFeatures('completedTable', 'searchInputCompleted', 'dateFilterCompleted', null, 'exportExcelCompleted', 3, 2);
+setupTableFeatures('rejectedTable', 'searchInputRejected', 'dateFilterRejected', null, 'exportExcelRejected', 3, 2);

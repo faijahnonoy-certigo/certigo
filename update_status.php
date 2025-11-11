@@ -22,12 +22,12 @@ if (isset($_POST['id']) && isset($_POST['status'])) {
     $success = $stmt->execute();
 
     if ($success) {
-        $result = $conn->query("SELECT firstname, lastname, date_submitted FROM request WHERE id = $id");
+        $result = $conn->query("SELECT firstname, middleinitial, lastname, date_submitted FROM request WHERE id = $id");
         $row = $result->fetch_assoc();
 
         echo json_encode([
             'success' => true,
-            'fullname' => $row['firstname'] . ' ' . $row['lastname'],
+            'fullname' => $row['firstname'] . ' ' . $row['middleinitial'] . ' ' . $row['lastname'],
             'date' => $row['date_submitted']
         ]);
     } else {

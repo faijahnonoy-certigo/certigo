@@ -24,7 +24,7 @@ body {
 
 .sidebar {
     width: 230px;
-    background-color: #8B1E23;
+    background-color: #AD0000;
     color: white;
     display: flex;
     flex-direction: column;
@@ -38,25 +38,32 @@ body {
 
 .btns {
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
 }
 
 .sidebar button {
     display: flex;
-    width: 100%;
-    background: none;
+    width: 70%;
+    background: #ffffff;
     border: none;
-    color: white;
+    border-radius: 5px;
+    color: #AD0000;
     text-align: left;
-    padding: 10px;
     cursor: pointer;
     justify-content: center;
-    border: 1px solid #FFFFFF;
-    padding: 20px;
+    padding: 10px;
+    margin: 3% 0;
+
 }
 
-.sidebar button:active {
-    background-color: #FFFFFF;
-    color: #AD0000;
+.active-tab:active {
+    background-color: #0026ff;
+    color: #ffffff;
+      cursor: pointer;
+
 }
 
 .sidebar .signOut {
@@ -72,29 +79,40 @@ body {
     flex: 1;
     background-color: white;
     overflow-y: auto;
+    padding: 0% 0%;
 }
+
+.main2{
+    flex: 1;
+    background-color: white;
+    overflow-y: auto;
+    padding: 0% 3%;
+}
+
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border: 0px 0px 1px 0px solid #0026ff;
+
 }
 
-th,
-td {
-    padding: 10px;
+th{
+   padding: 20px;
     text-align: center  ;
+   
 }
 
-th:hover{
-background-color: white;
- border: none;
+.ass{
+    margin-top: 5%;
 }
 
-
-tr:hover{
-    background-color: #ffffff;
-     border: 1px solid #0026ff;
+td {
+    padding: 15px;
+    text-align: center  ;
+    margin: 1% 0%;
 }
+
 
 .action-btn {
     cursor: pointer;
@@ -187,17 +205,24 @@ tr:hover{
 }
 
 .header {
-    padding: 40px;
-    background-color: #B23C3C;
-    color: #FFFFFF;
+    padding: 20px;
+    background-color: #0026ff;
+    color: #ffffff;
     font-family: 'Montserrat', sans-serif;
     font-style: normal;
+    margin-bottom: 1%;
+    text-transform: uppercase;
+    text-align: left;
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
 }
 
 .header h1 {
-    font-size: 50px;
+    font-size: 30px;
     margin: 0;
     text-align: right;
+    padding-left: 2%;
 }
 
 .header h2 {
@@ -207,14 +232,55 @@ tr:hover{
     margin: 0;
 }
 
-.section-title {
-    border: 1px solid #615e5e;
-    margin-top: 0;
+.column-header-row {
+  box-shadow: inset 0 0 0 2px #0026ff;
+  border-radius: 20px;
 }
 
-.section-title h3 {
-    margin-left: 20px;
+.column-header-row-2 {
+  box-shadow: none;
+  border-radius: none;
+  padding: 0;
+  margin: 0;
+  font-size: 1px;
+  height: 0;
 }
+
+
+/* --- Hover animation --- */
+
+.request-row{
+      border-radius: 20px;
+      margin: 5% 0;
+}
+.request-row:hover {
+ border-bottom: 2px solid #a60000;
+  border-radius: 0;
+}
+
+.request-row.active {
+ border-bottom: 2px solid #a60000;
+  border-radius: 0;
+}
+
+
+/* --- Buttons inside --- */
+.request-row button {
+  background: #a60000;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.request-row button:hover {
+  background: #7a0000;
+  transform: scale(1.05);
+}
+
+
 
 /* Modal background */
 .modal {
@@ -450,4 +516,150 @@ tr:hover{
 
 .confirm-btn:hover { background-color: #b71c1c; }
 .cancel-btn:hover { background-color: #bdbdbd; }
+
+
+
+/* REJECTION MODAL*/
+/* ==============================
+   REJECT REASON DROPDOWN MODAL
+   ============================== */
+
+.reject-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  display: none; /* Shown dynamically */
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.reject-box {
+  background: #ffffff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  width: 380px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: fadeInScale 0.25s ease-out;
+}
+
+.reject-box h3 {
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.reject-box select {
+  width: 100%;
+  padding: 10px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 20px;
+  transition: border-color 0.2s;
+}
+
+.reject-box select:focus {
+  border-color: #007bff;
+}
+
+.reject-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.reject-actions button {
+  padding: 8px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reject-actions #confirmReject {
+  background-color: #d9534f; /* red */
+  color: white;
+}
+
+.reject-actions #confirmReject:hover {
+  background-color: #c9302c;
+}
+
+.reject-actions #cancelReject {
+  background-color: #ccc;
+  color: #333;
+}
+
+.reject-actions #cancelReject:hover {
+  background-color: #b5b5b5;
+}
+
+/* Small popup animation */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* new features*/
+
+.table-tools {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 1%;
+  background: #fff;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.tool-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tool-input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+}
+
+.tool-input:focus {
+  border-color: #a60000;
+}
+
+.export-btn {
+  background: #a60000;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.export-btn:hover {
+  background: #7a0000;
+}
+
+
+
 

@@ -82,7 +82,7 @@ function validateBeforeSubmit(event) {
   if (fileErrorMsg) fileErrorMsg.classList.add("hidden");
 
   // Text field validation
-  const requiredIds = ["firstName", "lastName", "address", "residency", "contact", "email", "purpose"];
+  const requiredIds = ["firstName", "middleInitial", "lastName", "address", "residency", "contact", "email", "purpose", "remarks"];
   requiredIds.forEach((id) => {
     const input = document.getElementById(id);
     if (input && input.value.trim() === "") {
@@ -155,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const confirmBtn = document.getElementById("confirmRequestBtn");
   const cancelBtn = document.getElementById("cancelRequestBtn");
 
-  // === Step Navigation ===
+
   // === Step Navigation ===
 window.goToPhase2 = function (event) {
   event.preventDefault();
@@ -236,6 +236,7 @@ confirmBtn.addEventListener("click", async function () {
       // ✅ Create modal content
       const summaryDiv = document.getElementById("userDetailsSummary");
       const firstname = formData.get("firstname");
+      const middleinitial = formData.get("middleinitial");
       const lastname = formData.get("lastname");
       const address = formData.get("address");
       const contact = formData.get("contact");
@@ -244,7 +245,7 @@ confirmBtn.addEventListener("click", async function () {
 
       summaryDiv.innerHTML = `
         <p><strong>Tracking No:</strong> ${result.tracking_no}</p>
-        <p><strong>Name:</strong> ${firstname} ${lastname}</p>
+        <p><strong>Name:</strong> ${firstname} ${middleinitial} ${lastname}</p>
         <p><strong>Address:</strong> ${address}</p>
         <p><strong>Contact:</strong> ${contact}</p>
         <p><strong>Email:</strong> ${email}</p>
