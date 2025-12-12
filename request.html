@@ -7,7 +7,20 @@
   <title>Request</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <link rel="icon" type="image/png" sizes="32x32" href="images/certigo-favicon.png">
+  <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
+  <script>
+    function onRecaptchaLoad() {
+      if (typeof grecaptcha !== 'undefined') {
+        const captchaContainer = document.querySelector('.g-recaptcha');
+        if (captchaContainer && !captchaContainer.getAttribute('data-widget-id')) {
+          grecaptcha.render(captchaContainer, {
+            sitekey: '6Lf2CQIsAAAAANP349fIoVTMUBx3uUVeeoMaQD3L'
+          });
+        }
+      }
+    }
+  </script>
 </head>
 
 <body>
@@ -36,15 +49,16 @@
       </div>
     </div>
   </nav>
+  <!-- ===== END OF NAVBAR ===== -->
 
   <!-- ===== MAIN CONTENT ===== -->
   <section id="request-section-1">
     <div class="main-content-wrapper">
       <div class="form-card">
         <header class="header-section">
-          <h1 class="header-title">INDIGENCY REQUEST FORM</h1>
+          <h1 class="header-title">REQUEST FORM FOR BARANGAY CERTIFICATION <br>FOR INDIGENCY</h1>
           <div class="header-subtitle-group">
-            <p class="header-subtitle">FILL OUT THE FORM TO REQUEST A CERTIFICATE OF INDIGENCY</p>
+            <p class="header-subtitle">FILL OUT THE FORM. CLICK THE CHECKBOX BELOW IF NOT APPLICABLE (N/A).</p>
             <div class="header-line"><span class="header-dot"></span></div>
           </div>
         </header>
@@ -53,11 +67,14 @@
         <div class="step-indicator-wrapper">
           <div class="step-item active" id="step1">
             <span class="step-circle">1</span>
-            <span class="step-label">Personal<br> Information</span>
+            <span class="step-label">Who is<br>Requesting?</span>
           </div>
-       
           <div class="step-item" id="step2">
             <span class="step-circle">2</span>
+            <span class="step-label">Personal<br>Information</span>
+          </div>
+          <div class="step-item" id="step3">
+            <span class="step-circle">3</span>
             <span class="step-label">Upload<br>Requirements</span>
           </div>
         </div>
@@ -65,37 +82,119 @@
         <!-- FORM -->
         <form id="indigencyForm" class="form-body" action="php/submit.php" method="POST" enctype="multipart/form-data">
 
-          <!-- === Phase 1 === -->
-          <div id="phase1" class="form-phase">
+          <!-- === Phase 0: Who is Requesting? === -->
+          <div id="phase0" class="form-phase">
             <div class="form-group">
-              <label class="form-label">Complete Name</label>
-              <div class="input-row">
-                <input type="text" placeholder="Given Name" class="form-input half-width" required name="firstname" />
-                 <input type="text" placeholder="Middle Initial" class="form-input half-width" required name="middleinitial" />
-                <input type="text" placeholder="Last Name" class="form-input half-width" required name="lastname" />
+              <label class="form-label">Who are you requesting the Barangay Certification For?</label>
+              <div class="note-box">
+                <p><strong>Note:</strong> Select the appropriate option below:</p>
+                <ul>
+                  <li><strong>Personal (Self):</strong> If requesting for yourself</li>
+                  <li><strong>For Your Child:</strong> If requesting for your minor child (parent/guardian must fill the form)</li>
+                  <li><strong>For Someone Else:</strong> If requesting on behalf of another person</li>
+                </ul>
+              </div>
+              <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 500;">
+                  <input type="radio" name="requestFor" value="self" required onchange="updatePhase1Fields()">
+                  Personal (Self)
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 500;">
+                  <input type="radio" name="requestFor" value="child" required onchange="updatePhase1Fields()">
+                  For Your Child
+                </label>
+                <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 500;">
+                  <input type="radio" name="requestFor" value="others" required onchange="updatePhase1Fields()">
+                  For Someone Else
+                </label>
               </div>
             </div>
 
+            <div class="submit-area">
+              <button type="button" onclick="goToPhase1()" class="submit-button">NEXT STEP</button>
+            </div>
+          </div>
+
+          <!-- === Phase 1: Personal Information === -->
+          <div id="phase1" class="form-phase hidden">
+
+            <!-- Requestor Name -->
             <div class="form-group">
-              <label class="form-label">Address</label>
-              <input type="text" placeholder="Complete Address" class="form-input full-width" required name="address" />
+              <label class="form-label">Name of Requestor</label>
+              <div class="input-row">
+                <input type="text" id="firstName" class="form-input half-width capitalize" placeholder="Given Name" required name="firstname" />
+                <div class="input-with-na half-width">
+                  <input type="text" id="middleInitial" class="form-input capitalize" placeholder="Middle Name" name="middleinitial" />
+                  <label class="na-checkbox">
+                    <input type="checkbox" class="NACheckbox" onclick="toggleNA('middleInitial', this)">
+                  </label>
+                </div>
+                <input type="text" id="lastName" class="form-input half-width capitalize" placeholder="Last Name" required name="lastname" />
+              </div>
             </div>
 
-        
+            <!-- Address -->
+            <div class="form-group">
+              <label class="form-label">Complete Address</label>
+              <input type="text" id="address" class="form-input full-width capitalize" placeholder="Complete Address" required name="address" />
+            </div>
+
+            <!-- DOB and Age -->
+            <div class="form-group">
+              <div class="input-row">
+                <div class="input-field-group half-width">
+                  <label class="form-label">Date of Birth</label>
+                  <input type="date" id="dateofbirth" class="form-input" required name="dateofbirth" max="<?= date('Y-m-d'); ?>" />
+                </div>
+                <div class="input-field-group half-width">
+                  <label class="form-label">Age</label>
+                  <input type="number" name="age" class="form-input" readonly min="0" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Gender & Status -->
+            <div class="form-group">
+              <div class="input-row">
+                <div class="input-field-group half-width">
+                  <label class="form-label">Gender</label>
+                  <select name="gender" id="gender" class="form-select-status" required>
+                    <option value="" disabled selected>Select your gender</option>
+                    <option value="Male" class="option-male">Male</option>
+                    <option value="Female" class="option-female">Female</option>
+                  </select>
+                </div>
+                <div class="input-field-group half-width">
+                  <label class="form-label" for="status">Status</label>
+                  <div class="dropdown-box-cont">
+                    <select name="status" id="status" class="form-select-status" required>
+                      <option value="" disabled selected>Select your status</option>
+                      <option value="Single" class="option-single">Single</option>
+                      <option value="Married" class="option-married">Married</option>
+                      <option value="Widowed" class="option-widowed">Widowed</option>
+                      <option value="Separated" class="option-separated">Separated</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Residency & Contact -->
             <div class="form-group">
               <div class="input-row">
                 <div class="input-field-group half-width">
                   <label class="form-label">Years of Residency</label>
-                  <input type="number" class="form-input" required min="0" name="yearresidency" minlength="1" />
+                  <input type="number" class="form-input" required min="0" name="yearresidency" />
                 </div>
                 <div class="input-field-group half-width">
                   <label class="form-label">Contact Number</label>
                   <input type="text" name="contact" class="form-input" placeholder="09123456789" required
-                    pattern="\d{11}" maxlength="11" oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                    pattern="\d{11}" maxlength="11" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
                 </div>
               </div>
             </div>
 
+            <!-- Email & Purpose -->
             <div class="form-group">
               <div class="input-row">
                 <div class="input-field-group half-width">
@@ -104,68 +203,143 @@
                 </div>
                 <div class="input-field-group half-width">
                   <label class="form-label">Purpose</label>
-                  <input type="text" placeholder="Purpose (e.g., school requirement)" class="form-input" required
-                    name="purpose" />
+                  <select class="form-input" name="purpose" id="purposeSelect" required>
+                    <option value="" disabled selected>Select Purpose</option>
+                    <option value="Scholarship">Scholarship</option>
+                    <option value="Employment">Employment</option>
+                    <option value="Educational Assistance">Educational Assistance</option>
+                    <option value="Financial Assistance">Financial Assistance</option>
+                    <option value="Burial Assistance">Burial Assistance</option>
+                    <option value="Medical Assistance">Medical Assistance</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Notes/Dependent Section (shown only for "child" or "others") -->
+            <div id="dependentSection" class="hidden">
+              <div class="form-group">
+                <div class="form-note">
+                  <p>
+                    <strong>Note:</strong> Please include the complete details of the applicant/dependent below.
+                  </p>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-row">
+                  <div class="input-field-group half-width">
+                    <label class="form-label">Name of Applicant/Dependent</label>
+                    <div class="input-with-na">
+                      <input type="text" id="student_patient_name" class="form-input capitalize" name="student_patient_name" placeholder="Enter Name" />
+                      <label class="na-checkbox">
+                        <input type="checkbox" onclick="toggleNA('student_patient_name', this)"> N/A
+                      </label>
+                    </div>
+                  </div>
+                  <div class="input-field-group half-width">
+                    <label class="form-label">Relationship To Requestor</label>
+                    <select name="relationship" class="form-input">
+                      <option value="" disabled selected>Select Relationship</option>
+                      <option value="N/A">N/A</option>
+                      <option value="Self">Self</option>
+                      <option value="Child">Child</option>
+                      <option value="Father">Father</option>
+                      <option value="Mother">Mother</option>
+                      <option value="Sibling">Sibling</option>
+                      <option value="Legal Guardian">Legal Guardian</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="input-field-group half-width">
+                  <label class="form-label">Applicant's Address</label>
+                  <div class="input-with-na">
+                    <input type="text" id="student_patient_address" class="form-input capitalize" placeholder="Complete Address" name="student_patient_address" />
+                    <label class="na-checkbox">
+                      <input type="checkbox" onclick="toggleNA('student_patient_address', this)"> N/A
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label">Notes/Remarks:</label>
-              <textarea rows="4" class="form-input full-width textarea-input" name="remarks"></textarea>
+              <textarea id="remarks" rows="4" class="form-input full-width textarea-input capitalize" name="remarks"></textarea>
             </div>
 
             <div class="submit-area">
+              <button type="button" onclick="backToPhase0()" class="back-button">BACK</button>
               <button type="button" onclick="goToPhase2(event)" class="submit-button">NEXT STEP</button>
             </div>
           </div>
 
-          <!-- === Phase 2 === -->
+          <!-- === Phase 2: Upload Requirements === -->
           <div id="phase2" class="form-phase hidden">
             <p class="phase2-notice">
-              Upload required documents (max 2MB each; JPG, PNG, PDF).
+              Upload required documents (max 2MB each; JPG, PNG).<br>
+              The file must be in PNG or JPG format only.
             </p>
 
             <div class="form-group">
               <label class="form-label">Upload your Valid ID:</label>
               <div class="file-upload-box">
-                <input type="file" required onchange="handleFileUpload(this, 'validIdFileName')" name="validid">
-                <span id="validIdFileName">No file chosen</span>
+                <input type="file" accept=".png,.jpg,.jpeg" required onchange="handleFileUpload(this,'uploadValidId')" name="validid">
+                <span id="uploadValidId">No file chosen</span>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label">Upload your Cedula:</label>
               <div class="file-upload-box">
-                <input type="file" required onchange="handleFileUpload(this, 'cedulaFileName')" name="cedula">
-                <span id="cedulaFileName">No file chosen</span>
+                <input type="file" accept=".png,.jpg,.jpeg" required onchange="handleFileUpload(this,'uploadCedula')" name="cedula">
+                <span id="uploadCedula">No file chosen</span>
               </div>
             </div>
 
             <div class="form-group">
               <label class="form-label">Upload Photo Holding your Valid ID:</label>
               <div class="file-upload-box">
-                <input type="file" required onchange="handleFileUpload(this, 'photoIdFileName')" name="holdingid">
-                <span id="photoIdFileName">No file chosen</span>
+                <input type="file" accept=".png,.jpg,.jpeg" required onchange="handleFileUpload(this,'uploadPhotoId')" name="holdingid">
+                <span id="uploadPhotoId">No file chosen</span>
               </div>
+            </div>
+
+            <!-- Additional photo for requesting on behalf of someone else -->
+            <div id="additionalPhotoSection" class="form-group hidden">
+              <label class="form-label">Upload Photo of the Applicant (For Identity Verification):</label>
+              <div class="file-upload-box">
+                <input type="file" accept=".png,.jpg,.jpeg" onchange="handleFileUpload(this,'uploadApplicantPhoto')" name="applicantphoto">
+                <span id="uploadApplicantPhoto">No file chosen</span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Pick-up Schedule <small style="font-weight:400;color:#666;">(required)</small></label>
+              <input type="date" id="pickupSchedule" name="pickup_date" class="form-input" min="<?= date('Y-m-d') ?>" required>
+              <p class="help-text" style="font-size:12px;color:#666;margin-top:6px;">Choose your preferred pick-up date.(Note: This is not your final pick-up schedule)</p>
             </div>
 
             <!-- reCAPTCHA -->
             <div class="form-group" style="text-align:center; margin:15px 0;">
-              <div class="g-recaptcha" data-sitekey="6Lf2CQIsAAAAANP349fIoVTMUBx3uUVeeoMaQD3L"></div>
+              <div id="recaptchaContainer" class="g-recaptcha"></div>
             </div>
 
             <div class="submit-area submit-area-phase2">
-              <button type="button" onclick="goToPhase1()" class="back-button">BACK</button>
+              <button type="button" onclick="backToPhase1()" class="back-button">BACK</button>
               <button type="submit" class="submit-button">SUBMIT REQUEST</button>
             </div>
           </div>
+
         </form>
       </div>
     </div>
   </section>
 
-  <!-- ===== Single Modal ===== -->
+  <!-- ===== MODALS ===== -->
   <div id="requestConfirmModal" class="hidden modal-overlay">
     <div class="modal-content">
       <h3>Submit Request?</h3>
@@ -177,22 +351,16 @@
     </div>
   </div>
 
-
-  <!-- ===== SUCCESS DETAILS MODAL ===== -->
-<div id="requestSuccessModal" class="hidden modal-overlay">
-  <div class="request-modal-content">
-    <h3>✅ Request Submitted Successfully!</h3>
-    <p>Your request has been recorded with the following details:</p>
-    <div id="userDetailsSummary" class="details-box">
-      <!-- JS will fill this -->
-    </div>
-    <div class="modal-buttons">
-      <button id="closeSuccessModalBtn" type="button">Close</button>
+  <div id="requestSuccessModal" class="hidden modal-overlay">
+    <div class="request-modal-content">
+      <h3>✅ Request Submitted Successfully!</h3>
+      <p>Please take note of your Request Number:</p>
+      <div id="userDetailsSummary" class="details-box"></div>
+      <div class="modal-buttons">
+        <button id="closeSuccessModalBtn" type="button">Close</button>
+      </div>
     </div>
   </div>
-</div>
-
-
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
@@ -210,18 +378,13 @@
         <p><strong>CONTACT US</strong><br>
           <a href="tel:8352-1000">8352-1000</a>
         </p>
-
         <br>
         <p><strong>EMAIL US</strong><br>
           <a href="mailto:info@valenzuela.gov.ph">info@valenzuela.gov.ph</a>
         </p>
-
         <br>
-
         <p><a href="https://fonts.google.com/icons">by Google Material Symbol</a></p>
-
         <br>
-
         <p class="credits">
           Designed & Developed by Five Star | BSIT 3-4<br>
           of Pamantasan Ng Lungsod Ng Valenzuela
@@ -231,6 +394,11 @@
   </footer>
 
   <script src="js/request.js"></script>
-</body>
 
+  <!-- Loading Spinner Overlay -->
+  <div id="loadingSpinner" class="hidden">
+    <div class="spinner"></div>
+  </div>
+
+</body>
 </html>
