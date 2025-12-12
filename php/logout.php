@@ -1,5 +1,8 @@
 <?php
 session_start();
+include 'config.php';
+
+// 🌐 Live server (cPanel)
 
 // If user is logged in, destroy the session
 if (isset($_SESSION['is_admin'])) {

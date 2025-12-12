@@ -8,16 +8,15 @@ header('Content-Type: application/json');
 // ================================
 // DATABASE CONNECTION
 // ================================
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "indigency_db";
-$conn = new mysqli($servername, $username, $password, $dbname);
 
+// --- DATABASE CONNECTION ---
+include 'config.php';
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-    echo json_encode(["success" => false, "message" => "Database connection failed."]);
+    echo json_encode(["status" => "error", "message" => "Database connection failed: ".$conn->connect_error]);
     exit;
 }
+
 
 // ================================
 // VALIDATE TRACKING NUMBER
@@ -91,7 +90,9 @@ while ($row = $history_result->fetch_assoc()) {
 }
 
 // STEP 3 — Claim Your Document On: <Date>
-if (!empty($data['pickup_date'])) {
+// Only show the 'For Claiming On' event if the admin actually set the pickup date
+// and the request status reflects that a pickup was scheduled (i.e., 'For Pick-up').
+if (!empty($data['pickup_date']) && strtolower($data['status']) === 'for pick-up') {
     $timeline[] = [
         "step" => 4,
         "event" => "For Claiming On: " . $data['pickup_date'],
