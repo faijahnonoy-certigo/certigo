@@ -3,13 +3,11 @@
 
 @font-face {
     font-family: 'Poppins';
-    src: url('fonts/Poppins-Regular.woff2') format('woff2'),
-        url('fonts/Poppins-Regular.woff') format('woff'),
-        url('fonts/Poppins-Regular.ttf') format('truetype');
+    src: url('../fonts/Poppins-Regular.woff2') format('woff2'),
+        url('../fonts/Poppins-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-
 
 body {
     font-family: 'Poppins';
@@ -57,6 +55,12 @@ body {
     padding: 10px;
     margin: 3% 0;
 
+}
+
+.tab-count {
+  margin-left: 8px;
+  font-size: 12px;
+  color: #666666;
 }
 
 .active-tab:active {
@@ -172,8 +176,11 @@ td {
 }
 
 .modal-actions {
-    margin-top: 20px;
-    text-align: center;
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
 }
 
 .modal-actions button {
@@ -330,6 +337,11 @@ td {
 .modal-content button.btn-reject {
     background-color: #F44336;
     color: white;
+}
+
+.modal-content button.btn-reject:hover {
+    background-color: #d32f2f;
+    transition: background-color 0.3s ease;
 }
 
 .modal-content button.btn-complete {
@@ -660,6 +672,213 @@ td {
   background: #7a0000;
 }
 
+
+
+.dashboard-container {
+  padding: 1.5rem;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.dashboard-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.filter-group select,
+.filter-group input[type="date"] {
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.dashboard-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s;
+}
+.summary-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.321);
+  border-left: 1px solid #0026ff;
+  border-right: 1px solid #0026ff;
+  border-bottom: 1px solid #0026ff;
+}
+.summary-card h3 { margin-bottom: 0.5rem; font-weight: 600; }
+.summary-card p { font-size: 1.5rem; font-weight: bold; }
+.summary-card.pending { border-top: 5px solid orange; }
+.summary-card.approved { border-top: 5px solid #4caf50; }
+.summary-card.forpickup { border-top: 5px solid #4caf50; }
+.summary-card.completed { border-top: 5px solid #2196f3; }
+.summary-card.rejected { border-top: 5px solid #f44336; }
+.summary-card.total { border-top: 5px solid #673ab7; }
+
+.dashboard-charts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.chart-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 1rem;
+}
+
+.recent-requests {
+  margin-top: 2rem;
+}
+.recent-table-wrapper {
+    overflow-x: auto;
+  }
+
+.recent-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.recent-table .rr-header{
+  text-align: left;
+  padding: 1% 4%;
+  box-shadow: inset 0 0 0 2px #0026ff;
+  border-radius: 20px;
+}
+
+
+.recent-table .rr-header2{
+  padding: 0.1rem;
+}
+
+.recent-table td {
+  text-align: center;
+  padding: 1% 4%;
+  border-bottom: 1px solid #eee;
+}
+.status.pending { color: orange; font-weight: 600; }
+.status.approved { color: #4caf50; font-weight: 600; }
+.status.completed { color: #2196f3; font-weight: 600; }
+.status.rejected { color: #f44336; font-weight: 600; }
+
+#purposeChart {
+  max-height: 350px; /* adjust as needed */
+  width: 100%;        /* keep it responsive */
+}
+
+
+
+/* Monthly report styles */
+.monthly-report .report-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.monthly-report .report-header > div:first-child {
+  flex: 1;
+  min-width: 300px;
+}
+
+.report-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.print-btn, .pdf-btn {
+  background: #0026ff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.print-btn:hover {
+  background: #0020cc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.pdf-btn:hover {
+  background: #0020cc;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.report-summary-cards {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.report-summary-cards .card {
+  background: #fff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  min-width: 140px;
+  text-align: center;
+}
+
+.report-summary-cards .big-number {
+  font-size: 20px;
+  font-weight: 700;
+  color: #a60000;
+}
+
+.report-table .recent-table thead th { text-align:left; }
+
+@media print {
+  .report-actions {
+    display: none;
+  }
+  
+  .report-header form {
+    display: none;
+  }
+}
+
+/* Ensure modal action buttons (including Close) are centered in admin modals */
+.modal-content .modal-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
 
 
 

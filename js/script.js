@@ -38,6 +38,30 @@ faqs.forEach((item) => {
   });
 });
 
+// === FAQ SEARCH ===
+// === FAQ SEARCH ===
+const faqSearch = document.getElementById("faqSearchInput");
+
+if (faqSearch) {
+  faqSearch.addEventListener("keyup", function () {
+    let filter = this.value.toLowerCase();
+    let items = document.querySelectorAll(".faq-item");
+
+    items.forEach(item => {
+      let question = item.querySelector(".faq-question").innerText.toLowerCase();
+      let answer = item.querySelector(".faq-answer").innerText.toLowerCase();
+
+      if (question.includes(filter) || answer.includes(filter)) {
+        item.style.display = "block";
+      } else {
+        item.style.display = "none";
+      }
+    });
+  });
+}
+
+
+
 // end of for reminders page-----------
 
 
@@ -76,8 +100,11 @@ faqs.forEach((item) => {
         if (!controlNumber || controlNumber.trim() === '') {
             return { valid: false, message: 'Control number is required!' };
         }
-        if (!/^REQ-\d{8,}-\d+$/.test(controlNumber)) {
-            return { valid: false, message: 'Invalid control number format. Example: REQ-20251024-8' };
+        const normalized = controlNumber.trim();
+        const reqPattern = /^REQ-\d{8,}-\d+$/i;
+        const numeric10 = /^\d{10}$/;
+        if (!reqPattern.test(normalized) && !numeric10.test(normalized)) {
+            return { valid: false, message: 'Invalid control number. Use REQ-YYYYMMDD-<id> or a 10-digit number.' };
         }
         return { valid: true };
     }
@@ -162,6 +189,13 @@ faqs.forEach((item) => {
                     document.getElementById('resultsSection').style.display = 'block';
                     document.getElementById('residentName').textContent =
                         `Resident: ${data.firstname} ${data.lastname}`;
+                    // Show user's preferred pickup date (if any)
+                    const prefEl = document.getElementById('preferredDateInfo');
+                    if (data.preferred_pickup_date) {
+                        prefEl.textContent = `Preferred pick-up date: ${data.preferred_pickup_date}`;
+                    } else {
+                        prefEl.textContent = '';
+                    }
                     updateStatusBar(data.status);
                     renderTimeline(data.history || []);
                 } else {
@@ -170,31 +204,22 @@ faqs.forEach((item) => {
             })
             .finally(() => {
                 submitBtn.disabled = false;
-                submitBtn.textContent = 'Submit';
+                submitBtn.textContent = 'Track';
             });
     }
 
-    document.getElementById('controlNumberInput').addEventListener('keypress', e => {
-        if (e.key === 'Enter') {
-            trackRequest();
-        }
-    });
+    // Trigger tracking on Enter key while focused in input
+    const controlInput = document.getElementById('controlNumberInput');
+    if (controlInput) {
+        controlInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                trackRequest();
+            }
+        });
+    }
 
 
 
     // end of for track status page
 
-
-    // back of login
-  document.getElementById("backButton").addEventListener("click", function (e) {
-    e.preventDefault();
-    const referrer = document.referrer;
-
-    // If they came from the admin dashboard or no referrer, go to home
-    if (!referrer || referrer.includes("admin_dashboard.php")) {
-      window.location.href = "index.html"; 
-    } else {
-      window.history.back();
-    }
-  });
-// end of back of login
