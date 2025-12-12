@@ -21,16 +21,13 @@ if (empty($responseData['success'])) {
 }
 
 // --- DATABASE CONNECTION ---
-$servername = "localhost";
-$username   = "root";
-$password   = "";
-$dbname     = "indigency_db";
-
+include 'config.php';
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-    echo json_encode(["status" => "error", "message" => "Database connection failed."]);
+    echo json_encode(["status" => "error", "message" => "Database connection failed: ".$conn->connect_error]);
     exit;
 }
+
 
 // --- FILE UPLOAD CONFIG ---
 $upload_dir = __DIR__ . "/uploads/";
@@ -52,35 +49,57 @@ function uploadFile($inputName, $upload_dir) {
 
 // --- Collect form data ---
 $firstname     = $_POST['firstname'] ?? '';
-$middleinitial  = $_POST['middleinitial'] ?? '';
+$middleinitial = $_POST['middleinitial'] ?? '';
 $lastname      = $_POST['lastname'] ?? '';
 $address       = $_POST['address'] ?? '';
-$yearresidency = $_POST['yearresidency'] ?? '';
+$dateofbirth   = $_POST['dateofbirth'] ?? null;
+$age           = $_POST['age'] ?? null;
+$gender        = $_POST['gender'] ?? '';
+$yearresidency = $_POST['yearresidency'] ?? null;
 $contact       = $_POST['contact'] ?? '';
 $email         = $_POST['email'] ?? '';
 $purpose       = $_POST['purpose'] ?? '';
 $remarks       = $_POST['remarks'] ?? '';
+$student_patient_name    = $_POST['student_patient_name'] ?? '';
+$student_patient_address = $_POST['student_patient_address'] ?? '';
+$relationship            = $_POST['relationship'] ?? '';
 
+// --- Handle file uploads ---
 $validid   = uploadFile('validid', $upload_dir);
 $cedula    = uploadFile('cedula', $upload_dir);
 $holdingid = uploadFile('holdingid', $upload_dir);
 
+// Validate file uploads
 if (!$validid || !$cedula || !$holdingid) {
     echo json_encode(["status" => "error", "message" => "Please upload all required files."]);
     exit;
 }
 
-// --- Insert record ---
-$stmt = $conn->prepare("INSERT INTO request 
-    (firstname, middleinitial, lastname, address, yearresidency, contact, email, purpose, remarks, validid, cedula, holdingid, status) 
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending')");
+// --- Auto-generate tracking number ---
+$tracking_no = strtoupper(uniqid("REQ-"));
 
+// --- Prepare SQL ---
+$stmt = $conn->prepare("
+    INSERT INTO request (
+        tracking_no, firstname, middleinitial, lastname, address, 
+        dateofbirth, age, gender, yearresidency, contact, email, 
+        purpose, remarks, validid, cedula, holdingid, 
+        student_patient_name, student_patient_address, relationship, 
+        status, date_submitted
+    ) VALUES (
+        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Pending', NOW()
+    )
+");
+
+// --- Bind parameters ---
 $stmt->bind_param(
-    "sssissssssss",
-    $firstname, $middleinitial, $lastname, $address, $yearresidency,
-    $contact, $email, $purpose, $remarks, $validid, $cedula, $holdingid
+    "ssssssisissssssssss",
+    $tracking_no, $firstname, $middleinitial, $lastname, $address,
+    $dateofbirth, $age, $gender, $yearresidency, $contact, $email,
+    $purpose, $remarks, $validid, $cedula, $holdingid,
+    $student_patient_name, $student_patient_address, $relationship
 );
-
+// --- Execute and respond ---
 
 if ($stmt->execute()) {
     $last_id = $conn->insert_id;

@@ -1,6 +1,8 @@
 <?php
 session_start();
 require 'db_connect.php';
+include 'config.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username'] ?? '');

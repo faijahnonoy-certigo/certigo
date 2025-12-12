@@ -1,5 +1,7 @@
 <?php
 require 'db_connect.php';
+include 'config.php';
+
 
 // --- Replace these values for your admin ---
 $username = 'admin';

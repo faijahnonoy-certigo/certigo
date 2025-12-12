@@ -1,0 +1,16 @@
+[14-Nov-2025 15:11:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function sendPickupEmail() in /home/certfjbn/public_html/admin/text_email.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/certfjbn/public_html/admin/text_email.php on line 6
+[14-Nov-2025 15:14:18 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function sendPickupEmail() in /home/certfjbn/public_html/admin/text_email.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/certfjbn/public_html/admin/text_email.php on line 6
+[14-Nov-2025 15:14:21 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function sendPickupEmail() in /home/certfjbn/public_html/admin/text_email.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/certfjbn/public_html/admin/text_email.php on line 6
+[14-Nov-2025 15:14:25 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function sendPickupEmail() in /home/certfjbn/public_html/admin/text_email.php:6
+Stack trace:
+#0 {main}
+  thrown in /home/certfjbn/public_html/admin/text_email.php on line 6

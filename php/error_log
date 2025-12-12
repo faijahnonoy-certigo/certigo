@@ -1,0 +1,295 @@
+[12-Dec-2025 12:00:08 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:00:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:00:46 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:01:02 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:01:15 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:03:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:06:53 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:10:22 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:25:00 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:25:29 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 12:26:20 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 13:26:17 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 13:27:16 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 13:30:49 UTC] [SUBMIT.PHP] 2025-12-12 13:30:49 - Form submission started
+[12-Dec-2025 13:30:49 UTC] [SUBMIT.PHP] 2025-12-12 13:30:49 - CAPTCHA response received, verifying...
+[12-Dec-2025 13:30:49 UTC] [SUBMIT.PHP] 2025-12-12 13:30:49 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T13:29:44Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 13:30:49 UTC] [SUBMIT.PHP] 2025-12-12 13:30:49 - CAPTCHA verified successfully
+[12-Dec-2025 13:30:49 UTC] [SUBMIT.PHP] 2025-12-12 13:30:49 - Attempting database connection
+[12-Dec-2025 13:30:49 UTC] [SUBMIT.PHP] 2025-12-12 13:30:49 - Database connected successfully
+[12-Dec-2025 13:30:49 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:167
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(167): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 167
+[12-Dec-2025 13:31:44 UTC] [SUBMIT.PHP] 2025-12-12 13:31:44 - Form submission started
+[12-Dec-2025 13:31:44 UTC] [SUBMIT.PHP] 2025-12-12 13:31:44 - CAPTCHA response received, verifying...
+[12-Dec-2025 13:31:44 UTC] [SUBMIT.PHP] 2025-12-12 13:31:44 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T13:30:30Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 13:31:44 UTC] [SUBMIT.PHP] 2025-12-12 13:31:44 - CAPTCHA verified successfully
+[12-Dec-2025 13:31:44 UTC] [SUBMIT.PHP] 2025-12-12 13:31:44 - Attempting database connection
+[12-Dec-2025 13:31:44 UTC] [SUBMIT.PHP] 2025-12-12 13:31:44 - Database connected successfully
+[12-Dec-2025 13:31:44 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:167
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(167): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 167
+[12-Dec-2025 13:33:10 UTC] [SUBMIT.PHP] 2025-12-12 13:33:10 - Form submission started
+[12-Dec-2025 13:33:10 UTC] [SUBMIT.PHP] 2025-12-12 13:33:10 - CAPTCHA response received, verifying...
+[12-Dec-2025 13:33:10 UTC] [SUBMIT.PHP] 2025-12-12 13:33:10 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T13:32:55Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 13:33:10 UTC] [SUBMIT.PHP] 2025-12-12 13:33:10 - CAPTCHA verified successfully
+[12-Dec-2025 13:33:10 UTC] [SUBMIT.PHP] 2025-12-12 13:33:10 - Attempting database connection
+[12-Dec-2025 13:33:10 UTC] [SUBMIT.PHP] 2025-12-12 13:33:10 - Database connected successfully
+[12-Dec-2025 13:33:10 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:167
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(167): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 167
+[12-Dec-2025 13:33:17 UTC] [SUBMIT.PHP] 2025-12-12 13:33:17 - Form submission started
+[12-Dec-2025 13:33:17 UTC] [SUBMIT.PHP] 2025-12-12 13:33:17 - CAPTCHA response received, verifying...
+[12-Dec-2025 13:33:17 UTC] [SUBMIT.PHP] 2025-12-12 13:33:17 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T13:32:07Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 13:33:17 UTC] [SUBMIT.PHP] 2025-12-12 13:33:17 - CAPTCHA verified successfully
+[12-Dec-2025 13:33:17 UTC] [SUBMIT.PHP] 2025-12-12 13:33:17 - Attempting database connection
+[12-Dec-2025 13:33:17 UTC] [SUBMIT.PHP] 2025-12-12 13:33:17 - Database connected successfully
+[12-Dec-2025 13:33:17 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:167
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(167): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 167
+[12-Dec-2025 13:39:12 UTC] [SUBMIT.PHP] 2025-12-12 13:39:12 - Form submission started
+[12-Dec-2025 13:39:12 UTC] [SUBMIT.PHP] 2025-12-12 13:39:12 - CAPTCHA response received, verifying...
+[12-Dec-2025 13:39:12 UTC] [SUBMIT.PHP] 2025-12-12 13:39:12 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T13:29:35Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 13:39:12 UTC] [SUBMIT.PHP] 2025-12-12 13:39:12 - CAPTCHA verified successfully
+[12-Dec-2025 13:39:12 UTC] [SUBMIT.PHP] 2025-12-12 13:39:12 - Attempting database connection
+[12-Dec-2025 13:39:12 UTC] [SUBMIT.PHP] 2025-12-12 13:39:12 - Database connected successfully
+[12-Dec-2025 13:39:12 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:167
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(167): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 167
+[12-Dec-2025 14:30:00 UTC] [SUBMIT.PHP] 2025-12-12 14:30:00 - Form submission started
+[12-Dec-2025 14:30:00 UTC] [SUBMIT.PHP] 2025-12-12 14:30:00 - CAPTCHA response received, verifying...
+[12-Dec-2025 14:30:01 UTC] [SUBMIT.PHP] 2025-12-12 14:30:01 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T14:28:43Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 14:30:01 UTC] [SUBMIT.PHP] 2025-12-12 14:30:01 - CAPTCHA verified successfully
+[12-Dec-2025 14:30:01 UTC] [SUBMIT.PHP] 2025-12-12 14:30:01 - Attempting database connection
+[12-Dec-2025 14:30:01 UTC] [SUBMIT.PHP] 2025-12-12 14:30:01 - Database connected successfully
+[12-Dec-2025 14:30:01 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:167
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(167): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 167
+[12-Dec-2025 15:10:05 UTC] [SUBMIT.PHP] 2025-12-12 15:10:05 - Form submission started
+[12-Dec-2025 15:10:05 UTC] [SUBMIT.PHP] 2025-12-12 15:10:05 - CAPTCHA response received, verifying...
+[12-Dec-2025 15:10:05 UTC] [SUBMIT.PHP] 2025-12-12 15:10:05 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T15:07:34Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 15:10:05 UTC] [SUBMIT.PHP] 2025-12-12 15:10:05 - CAPTCHA verified successfully
+[12-Dec-2025 15:10:05 UTC] [SUBMIT.PHP] 2025-12-12 15:10:05 - Attempting database connection
+[12-Dec-2025 15:10:05 UTC] [SUBMIT.PHP] 2025-12-12 15:10:05 - Database connected successfully
+[12-Dec-2025 15:10:05 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:167
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(167): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 167
+[12-Dec-2025 15:22:20 UTC] [SUBMIT.PHP] 2025-12-12 15:22:20 - Form submission started
+[12-Dec-2025 15:22:20 UTC] [SUBMIT.PHP] 2025-12-12 15:22:20 - CAPTCHA response received, verifying...
+[12-Dec-2025 15:22:21 UTC] [SUBMIT.PHP] 2025-12-12 15:22:21 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T15:21:05Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 15:22:21 UTC] [SUBMIT.PHP] 2025-12-12 15:22:21 - CAPTCHA verified successfully
+[12-Dec-2025 15:22:21 UTC] [SUBMIT.PHP] 2025-12-12 15:22:21 - Attempting database connection
+[12-Dec-2025 15:22:21 UTC] [SUBMIT.PHP] 2025-12-12 15:22:21 - Database connected successfully
+[12-Dec-2025 15:22:21 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/certfjbn/public_html/php/submit.php:170
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(170): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 170
+[12-Dec-2025 15:24:38 UTC] [SUBMIT.PHP] 2025-12-12 15:24:38 - Form submission started
+[12-Dec-2025 15:24:38 UTC] [SUBMIT.PHP] 2025-12-12 15:24:38 - CAPTCHA response received, verifying...
+[12-Dec-2025 15:24:38 UTC] [SUBMIT.PHP] 2025-12-12 15:24:38 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T15:23:45Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 15:24:38 UTC] [SUBMIT.PHP] 2025-12-12 15:24:38 - CAPTCHA verified successfully
+[12-Dec-2025 15:24:38 UTC] [SUBMIT.PHP] 2025-12-12 15:24:38 - Attempting database connection
+[12-Dec-2025 15:24:38 UTC] [SUBMIT.PHP] 2025-12-12 15:24:38 - Database connected successfully
+[12-Dec-2025 15:24:38 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/certfjbn/public_html/php/submit.php:170
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(170): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 170
+[12-Dec-2025 15:28:52 UTC] PHP Fatal error:  Uncaught mysqli_sql_exception: Unknown column 'preferred_pickup_date' in 'INSERT INTO' in /home/certfjbn/public_html/php/submit.php:121
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(121): mysqli->prepare()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 121
+[12-Dec-2025 15:31:19 UTC] [SUBMIT.PHP] 2025-12-12 15:31:19 - Form submission started
+[12-Dec-2025 15:31:19 UTC] [SUBMIT.PHP] 2025-12-12 15:31:19 - CAPTCHA response received, verifying...
+[12-Dec-2025 15:31:19 UTC] [SUBMIT.PHP] 2025-12-12 15:31:19 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T15:30:32Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 15:31:19 UTC] [SUBMIT.PHP] 2025-12-12 15:31:19 - CAPTCHA verified successfully
+[12-Dec-2025 15:31:19 UTC] [SUBMIT.PHP] 2025-12-12 15:31:19 - Attempting database connection
+[12-Dec-2025 15:31:19 UTC] [SUBMIT.PHP] 2025-12-12 15:31:19 - Database connected successfully
+[12-Dec-2025 15:31:19 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/certfjbn/public_html/php/submit.php:170
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(170): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 170
+[12-Dec-2025 15:50:21 UTC] [SUBMIT.PHP] 2025-12-12 15:50:21 - Form submission started
+[12-Dec-2025 15:50:21 UTC] [SUBMIT.PHP] 2025-12-12 15:50:21 - CAPTCHA response received, verifying...
+[12-Dec-2025 15:50:22 UTC] [SUBMIT.PHP] 2025-12-12 15:50:22 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T15:49:22Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 15:50:22 UTC] [SUBMIT.PHP] 2025-12-12 15:50:22 - CAPTCHA verified successfully
+[12-Dec-2025 15:50:22 UTC] [SUBMIT.PHP] 2025-12-12 15:50:22 - Attempting database connection
+[12-Dec-2025 15:50:22 UTC] [SUBMIT.PHP] 2025-12-12 15:50:22 - Database connected successfully
+[12-Dec-2025 15:50:22 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/certfjbn/public_html/php/submit.php:170
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(170): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 170
+[12-Dec-2025 15:53:21 UTC] [SUBMIT.PHP] 2025-12-12 15:53:21 - Form submission started
+[12-Dec-2025 15:53:21 UTC] [SUBMIT.PHP] 2025-12-12 15:53:21 - CAPTCHA response received, verifying...
+[12-Dec-2025 15:53:21 UTC] [SUBMIT.PHP] 2025-12-12 15:53:21 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T15:52:17Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 15:53:21 UTC] [SUBMIT.PHP] 2025-12-12 15:53:21 - CAPTCHA verified successfully
+[12-Dec-2025 15:53:21 UTC] [SUBMIT.PHP] 2025-12-12 15:53:21 - Attempting database connection
+[12-Dec-2025 15:53:21 UTC] [SUBMIT.PHP] 2025-12-12 15:53:21 - Database connected successfully
+[12-Dec-2025 15:53:21 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/certfjbn/public_html/php/submit.php:170
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(170): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 170
+[12-Dec-2025 15:57:37 UTC] [SUBMIT.PHP] 2025-12-12 15:57:37 - Form submission started
+[12-Dec-2025 15:57:37 UTC] [SUBMIT.PHP] 2025-12-12 15:57:37 - CAPTCHA response received, verifying...
+[12-Dec-2025 15:57:37 UTC] [SUBMIT.PHP] 2025-12-12 15:57:37 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T15:56:41Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 15:57:37 UTC] [SUBMIT.PHP] 2025-12-12 15:57:37 - CAPTCHA verified successfully
+[12-Dec-2025 15:57:37 UTC] [SUBMIT.PHP] 2025-12-12 15:57:37 - Attempting database connection
+[12-Dec-2025 15:57:37 UTC] [SUBMIT.PHP] 2025-12-12 15:57:37 - Database connected successfully
+[12-Dec-2025 15:57:37 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/certfjbn/public_html/php/submit.php:170
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(170): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 170
+[12-Dec-2025 16:03:32 UTC] [SUBMIT.PHP] 2025-12-12 16:03:32 - Form submission started
+[12-Dec-2025 16:03:32 UTC] [SUBMIT.PHP] 2025-12-12 16:03:32 - CAPTCHA response received, verifying...
+[12-Dec-2025 16:03:32 UTC] [SUBMIT.PHP] 2025-12-12 16:03:32 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T16:02:38Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 16:03:32 UTC] [SUBMIT.PHP] 2025-12-12 16:03:32 - CAPTCHA verified successfully
+[12-Dec-2025 16:03:32 UTC] [SUBMIT.PHP] 2025-12-12 16:03:32 - Attempting database connection
+[12-Dec-2025 16:03:32 UTC] [SUBMIT.PHP] 2025-12-12 16:03:32 - Database connected successfully
+[12-Dec-2025 16:03:32 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/certfjbn/public_html/php/submit.php:181
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(181): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 181
+[12-Dec-2025 16:05:52 UTC] [SUBMIT.PHP] 2025-12-12 16:05:52 - Form submission started
+[12-Dec-2025 16:05:52 UTC] [SUBMIT.PHP] 2025-12-12 16:05:52 - CAPTCHA response received, verifying...
+[12-Dec-2025 16:05:52 UTC] [SUBMIT.PHP] 2025-12-12 16:05:52 - CAPTCHA response: {
+  "success": true,
+  "challenge_ts": "2025-12-12T16:04:56Z",
+  "hostname": "certigo-balangkas.online"
+}
+[12-Dec-2025 16:05:52 UTC] [SUBMIT.PHP] 2025-12-12 16:05:52 - CAPTCHA verified successfully
+[12-Dec-2025 16:05:52 UTC] [SUBMIT.PHP] 2025-12-12 16:05:52 - Attempting database connection
+[12-Dec-2025 16:05:52 UTC] [SUBMIT.PHP] 2025-12-12 16:05:52 - Database connected successfully
+[12-Dec-2025 16:05:52 UTC] PHP Fatal error:  Uncaught ArgumentCountError: The number of elements in the type definition string must match the number of bind variables in /home/certfjbn/public_html/php/submit.php:181
+Stack trace:
+#0 /home/certfjbn/public_html/php/submit.php(181): mysqli_stmt->bind_param()
+#1 {main}
+  thrown in /home/certfjbn/public_html/php/submit.php on line 181

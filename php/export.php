@@ -1,4 +1,14 @@
 <?php
+
+// 🌐 Live server (cPanel)
+    $servername = "localhost";
+    $username = "certfjbn_superadmin"; // full MySQL user
+    $password = "superadmin123";       // your MySQL user password
+    $dbname = "certfjbn_indigency_db"; // full database name with prefix
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
+
 session_start();
 if (empty($_SESSION['is_admin'])) exit;
 
